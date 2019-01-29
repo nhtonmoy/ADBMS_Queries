@@ -1,0 +1,47 @@
+
+select e.ename, e.empno, d.* from dept d, emp e
+where e.deptno = d.deptno and d.dname in ('ACCOUNTING','MARKETING')
+and e.job in ('CLERK','MANAGER')
+
+select e.ename, e.job, d.dname, d.loc from emp e, dept d where d.loc<>'DALLAS'
+
+select d.dname, d.loc from emp e, dept d where e.job='CLARK'
+
+select d.* from dept d, emp e1, emp e2 where e1.mgr=e2.empno
+
+select e.* from emp e, dept d where d.deptno = e.deptno and d.loc='DALLAS'
+
+select e.empno, e.ename, d.dname, d.loc, e.sal from dept d, emp e
+where e.deptno = d.deptno and d.dname = 'SALES'
+and e.sal=(select max(sal) from emp e, dept d where e.deptno=d.deptno
+and d.dname='SALES')
+
+select e.*, d.dname, d.loc from emp e, dept d where
+e.job = (select job from emp where ename='MILLER')
+and e.sal > (select sal from emp where ename='ALLEN')
+
+select e.* from emp e, dept d where e.deptno=d.deptno and d.loc in 
+('CHICAGO','DALLAS')
+
+select e.* from emp e, salgrade s 
+where e.sal between s.losal and s.hisal and s.grade in (2,3)
+
+select e.* from emp e, salgrade s
+where e.sal between s.losal and s.hisal and s.grade in (4,5) 
+and e.job in ('ANALYST','MANAGER')
+
+select e.* from emp e, dept d, salgrade s
+where e.sal between s.losal and s.hisal and s.grade in (2,3)
+and e.deptno = d.deptno and d.loc = 'CHICAGO'
+
+select e.empno, e.ename, d.dname, d.loc, e.sal from dept d, emp e
+where e.deptno = d.deptno and d.dname = 'SALES'
+and e.sal=(select max(sal) from emp e, dept d where e.deptno=d.deptno
+and d.dname='SALES')
+
+select e.* from emp e, dept d, salgrade s
+where e.deptno=d.deptno and d.loc = 'DALLAS' and e.job='MANAGER'
+and e.sal between s.losal and s.hisal and s.grade in (3,4)
+
+select s.grade from emp e, salgrade s where e.job='MANAGER' 
+and e.sal between s.losal and s.hisal
