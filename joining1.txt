@@ -45,3 +45,18 @@ and e.sal between s.losal and s.hisal and s.grade in (3,4)
 
 select s.grade from emp e, salgrade s where e.job='MANAGER' 
 and e.sal between s.losal and s.hisal
+
+
+
+
+
+select e.* from emp e, dept d, salgrade s
+where e.deptno = d.deptno
+and d.dname='SALES'
+and e.sal between s.losal and s.hisal
+and s.grade in (2,3)
+and e.sal = (select MAX(sal) from emp e, dept d, salgrade s 
+where e.deptno = d.deptno
+and d.dname='SALES'
+and s.grade in(2,3)
+and e.sal between s.losal and s.hisal);
