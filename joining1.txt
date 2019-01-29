@@ -5,7 +5,8 @@ and e.job in ('CLERK','MANAGER')
 
 select e.ename, e.job, d.dname, d.loc from emp e, dept d where d.loc<>'DALLAS'
 
-select d.dname, d.loc from emp e, dept d where e.job='CLARK'
+select d.dname, d.loc, e1.ename, e1.mgr,e2.empno, e2.ename from emp e1, emp e2, dept d 
+where e1.mgr=e2.empno and e2.ename='CLARK'
 
 select d.* from dept d, emp e1, emp e2 where e1.mgr=e2.empno
 
